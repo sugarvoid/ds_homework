@@ -1,29 +1,42 @@
 from typing import Any, Callable, Optional
 
 
-def identity(x):  # The identity function
+# The identity function
+def identity(x):
     return x
 
 
 class Array(object):
     def __init__(self, initial_size: int):
-        self.__list: list = [None] * initial_size  # The array stored as a list
-        self.__item_count: int = 0  # No items in array initially
+        self.size = initial_size
+        self.__item_limit = self.size
+        # The array stored as a list
+        self.__list: list = [None] * self.size
+        # No items in array initially
+        self.__item_count: int = 0
 
-    def __len__(self):  # Special def for len() func
-        return self.__item_count  # Return number of items
+    # Special def for len() func
+    def __len__(self):
+        return self.__item_count
+    
+    def replace(self, new_array) -> None:
+        self.__list = new_array
+        self.__item_count = len(new_array)
 
-    def get(self, n: int) -> Optional[Any]:  # Return the value at index n
-        if 0 <= n and n < self.__item_count:  # Check if n is in bounds, and
-            return self.__list[n]  # only return item if in bounds
+    # Return the value at index n
+    def get(self, idx: int) -> Optional[Any]:
+        if 0 <= idx and idx < self.__item_count:  # Check if n is in bounds, and
+            return self.__list[idx]  # only return item if in bounds
 
-    def set(self, n: int, value: Any) -> None:  # Set the value at index n
-        if 0 <= n and n < self.__item_count:  # Check if n is in bounds, and
-            self.__list[n] = value  # only set item if in bounds
+    def set(self, idx: int, value: Any) -> None:  # Set the value at index n
+        if 0 <= idx and idx < self.__item_count:  # Check if n is in bounds, and
+            self.__list[idx] = value  # only set item if in bounds
 
-    def insert(self, item: Any) -> None:  # Insert item at end
-        self.__list[self.__item_count] = item  # Item goes at current end
-        self.__item_count += 1  # Increment number of items
+    def insert(self, item: Any) -> None:
+        if self.__item_limit == self.__item_count:
+            raise Exception(f"Failed to insert {item}. Array has reached its limit")
+        self.__list[self.__item_count] = item
+        self.__item_count += 1
 
     def find(self, item: Any) -> int:  # Find index for item
         for j in range(self.__item_count):  # Among current items
@@ -46,6 +59,57 @@ class Array(object):
     def traverse(self, function: Callable = print) -> None:  # Traverse all items
         for j in range(self.__item_count):  # and apply a function
             function(self.__list[j])
+
+    def get_max_num(self) -> int | float | None:
+        """Returns the value of the highest number in the array
+
+        Returns:
+            int | float: The value of the highest number, if exist. Otherwise returns None.
+        """
+        _tmp_list = []
+        for item in self.__list:
+            if isinstance(item, (int, float)):
+                _tmp_list.append(item)
+
+        if _tmp_list:
+            return max(_tmp_list)
+
+    def delete_max_num(self) -> int | float | None:
+        """Returns and removes the value of the highest number in the array
+
+        Returns:
+            int | float: The value of the highest number, if exist. Otherwise returns None.
+        """
+        _tmp_list = []
+        _highest = None
+        for item in self.__list:
+            if isinstance(item, (int, float)):
+                _tmp_list.append(item)
+
+        if _tmp_list:
+            _tmp_list.sort()
+            _highest = _tmp_list.pop()
+
+            self.__list.remove(_highest)
+            self.__item_count -= 1
+            return _highest
+        return None
+    
+    def remove_dupes(self) -> None:
+        """Removes any duplicate entries in the array
+        """
+        #TODO: Should I account for string case sensitivity or if a number is a string "77" vs 77
+        _tmp_list = []
+        for item in self.__list:
+            if item not in _tmp_list:
+                _tmp_list.append(item)
+
+        self.replace(_tmp_list)
+        
+        #self.__list = _tmp_list
+        #self.__item_count = len(_tmp_list)
+
+
 
 
 # Implement an Ordered Array of Records structure
