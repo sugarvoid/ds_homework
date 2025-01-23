@@ -2,10 +2,8 @@ from classes import Array, OrderedRecordArray
 from random import choice, randint
 from string import ascii_letters
 
-MAX_SIZE = 100  # Max size of the array
 
-
-def second(x: list):  # Key on second element of record
+def second(x: list):
     return x[1]
 
 
@@ -14,7 +12,7 @@ def test_function():
 
 
 def project_2_1():
-    array = Array(MAX_SIZE)
+    array = Array(100)
     array.insert(77)
     array.insert(99)
     array.insert(test_function)
@@ -29,7 +27,7 @@ def project_2_1():
 
 
 def project_2_2():
-    array = Array(MAX_SIZE)
+    array = Array(100)
     array.insert(77)
     array.insert(99)
     array.insert(100)
@@ -48,7 +46,7 @@ def project_2_2():
 
 
 def project_2_4():
-    array = Array(MAX_SIZE)
+    array = Array(100)
     array.insert(77)
     array.insert(77)
     array.insert(77)
