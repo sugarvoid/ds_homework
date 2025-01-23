@@ -18,7 +18,7 @@ class Array(object):
     # Special def for len() func
     def __len__(self):
         return self.__item_count
-    
+
     def replace(self, new_array) -> None:
         self.__list = new_array
         self.__item_count = len(new_array)
@@ -94,30 +94,28 @@ class Array(object):
             self.__item_count -= 1
             return _highest
         return None
-    
+
     def remove_dupes(self) -> None:
-        """Removes any duplicate entries in the array
-        """
-        #TODO: Should I account for string case sensitivity or if a number is a string "77" vs 77
+        """Removes any duplicate entries in the array"""
+        # TODO: Should I account for string case sensitivity or if a number is a string "77" vs 77
         _tmp_list = []
         for item in self.__list:
             if item not in _tmp_list:
                 _tmp_list.append(item)
 
         self.replace(_tmp_list)
-        
-        #self.__list = _tmp_list
-        #self.__item_count = len(_tmp_list)
 
 
-
-
-# Implement an Ordered Array of Records structure
 class OrderedRecordArray(object):
-    def __init__(self, initialSize, key=identity):  # Constructor
-        self.__list = [None] * initialSize  # The array stored as a list
+    def __init__(
+        self, initial_size: int, key: Callable = identity, resizable: bool = False
+    ):
+        self.__list = [None] * initial_size  # The array stored as a list
+        self.__item_limit = initial_size
         self.__item_count = 0  # No items in array initially
         self.__key = key  # Key function gets record key
+        self.__growth_amount = 10 # For when the array size is increased 
+        self.__is_resizable = resizable
 
     def __len__(self):  # Special def for len() func
         return self.__item_count  # Return number of items
@@ -143,14 +141,15 @@ class OrderedRecordArray(object):
     def find(self, key):  # Find index at or just below key
         lo = 0  # in ordered list
         hi = self.__item_count - 1  # Look between lo and hi
+
         while lo <= hi:
             mid = (lo + hi) // 2  # Select the midpoint
-        if self.__key(self.__list[mid]) == key:  # Did we find it?
-            return mid  # Return location of item
-        elif self.__key(self.__list[mid]) < key:  # Is key in upper half?
-            lo = mid + 1  # Yes, raise the lo boundary
-        else:
-            hi = mid - 1  # No, but could be in lower half
+            if self.__key(self.__list[mid]) == key:  # Did we find it?
+                return mid  # Return location of item
+            elif self.__key(self.__list[mid]) < key:  # Is key in upper half?
+                lo = mid + 1  # Yes, raise the lo boundary
+            else:
+                hi = mid - 1  # No, but could be in lower half
         return lo  # Item not found, return insertion point instead
 
     def search(self, key):
@@ -159,13 +158,19 @@ class OrderedRecordArray(object):
             return self.__list[idx]  # and return item if found
 
     def insert(self, item: Any):  # Insert item into the correct position
-        if self.__item_count >= len(self.__list):  # If array is full,
-            raise Exception("Array overflow")  # raise exception
-        j = self.find(self.__key(item))  # Find where item should go
-        for k in range(self.__item_count, j, -1):  # Move bigger items right
-            self.__list[k] = self.__list[k - 1]
-        self.__list[j] = item  # Insert the item
-        self.__item_count += 1  # Increment the number of items
+        print(self.__item_count >= len(self.__list))
+        if self.__item_count >= len(self.__list): 
+            if self.__is_resizable:  # If array is full,
+                print("but")
+                self.__increase_size()
+            else:
+                raise Exception("Array overflow")  # raise exception
+        else:
+            j = self.find(self.__key(item))  # Find where item should go
+            for k in range(self.__item_count, j, -1):  # Move bigger items right
+                self.__list[k] = self.__list[k - 1]
+            self.__list[j] = item  # Insert the item
+            self.__item_count += 1  # Increment the number of items
 
     def delete(self, item: Any):  # Delete any occurrence
         j = self.find(self.__key(item))  # Try to find the item
@@ -176,6 +181,23 @@ class OrderedRecordArray(object):
             return True  # Return success flag
 
         return False  # Made it here; item not found
+
+    def __increase_size(self):
+        """Increase size of Array"""
+
+        # Determine the new size of the list
+        _new_size = self.__item_limit + self.__growth_amount
+
+        # Make the new list
+        _new_list = [None] * _new_size
+
+        # Loop through the current list and put the values into new one
+        for i in range(self.__item_count):
+            _new_list[i] = self.__list[i]
+
+        # Use local variables to set Array properties
+        self.__list = _new_list
+        self.__item_limit = _new_size
 
 
 class OrderedArray(object):
