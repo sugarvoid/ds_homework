@@ -22,3 +22,6 @@ I choose to do projects 2.1, 2.2, 2.4 and 2.7
 ### Added 
 - `__increase_size()` to handle resizing the list when an insert is attempted when the array is full. I chose to go with a fixed increase size of 10. But thought about making it an optional argument. **(Project 2.7)**
 - Resizable argument to the constructor, to account for when the user wants a array to stay at a fix length. Default is False. 
+- `get_size()` to be able to check if resizing increased properly. **(Project 2.7)**
+
+
