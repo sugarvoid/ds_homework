@@ -77,7 +77,7 @@ def project_2_7():
 
     for _ in range(5):
         _random_letter = choice(ascii_letters)
-        _random_int = randint(1,50)
+        _random_int = randint(1, 50)
         arr.insert((_random_letter, _random_int))
 
     print(f"Array's size: {arr.get_size()}")
@@ -90,5 +90,5 @@ def project_2_7():
 if __name__ == "__main__":
     # project_2_1()
     # project_2_2()
-    #project_2_4()
+    # project_2_4()
     project_2_7()

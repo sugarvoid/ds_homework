@@ -173,7 +173,7 @@ class OrderedRecordArray(object):
 
     def __len__(self):
         return self.__item_count
-    
+
     def get_size(self) -> int:
         """Get size of the array. (Not how many items)
 
@@ -266,11 +266,11 @@ class OrderedRecordArray(object):
         """
 
         # Search for a record by its key
-        _index = self.find(key)  
+        _index = self.find(key)
         if _index < self.__item_count and self.__key(self.__list[_index]) == key:
             # and return item if found
-            return self.__list[_index]  
-        else: 
+            return self.__list[_index]
+        else:
             return None
 
     def insert(self, item: Any):
