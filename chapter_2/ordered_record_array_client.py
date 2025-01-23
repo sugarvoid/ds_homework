@@ -11,7 +11,7 @@ arr = OrderedRecordArray(maxSize, second, resizable=True)  # Create the array ob
 for rec in [
     ("a", 3.1),
     ("b", 7.5),
-    ("dog",5),
+    ("dog", 5),
     ("d", 3.1),
     ("e", 1.4),
     ("f", -1.2),

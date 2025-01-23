@@ -158,13 +158,11 @@ class OrderedRecordArray(object):
             return self.__list[idx]  # and return item if found
 
     def insert(self, item: Any):  # Insert item into the correct position
-        print(self.__item_count >= len(self.__list))
         if self.__item_count >= len(self.__list): 
             if self.__is_resizable:  # If array is full,
-                print("but")
                 self.__increase_size()
             else:
-                raise Exception("Array overflow")  # raise exception
+                raise Exception("Array overflow")
         else:
             j = self.find(self.__key(item))  # Find where item should go
             for k in range(self.__item_count, j, -1):  # Move bigger items right

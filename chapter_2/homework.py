@@ -62,7 +62,8 @@ def project_2_4():
     print("Array after remove_dupes()")
     array.traverse()
  
-
+def project_2_7():
+    pass
 
 if __name__ == "__main__":
     project_2_4()
