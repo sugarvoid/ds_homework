@@ -283,21 +283,39 @@ class OrderedRecordArray(object):
             else:
                 raise Exception("Array overflow")
 
-        j = self.find(self.__key(item))  # Find where item should go
-        for k in range(self.__item_count, j, -1):  # Move bigger items right
+        # Find where item should go
+        j = self.find(self.__key(item))  
+
+        # Move bigger items right
+        for k in range(self.__item_count, j, -1):  
             self.__list[k] = self.__list[k - 1]
-        self.__list[j] = item  # Insert the item
-        self.__item_count += 1  # Increment the number of items
 
-    def delete(self, item: Any):  # Delete any occurrence
-        j = self.find(self.__key(item))  # Try to find the item
-        if j < self.__item_count and self.__list[j] == item:  # If found,
-            self.__item_count -= 1  # One fewer at end
-            for k in range(j, self.__item_count):  # Move bigger items left
+        # Insert the item
+        self.__list[j] = item  
+
+        # Increment the number of items
+        self.__item_count += 1  
+
+
+    def delete(self, item: Any):
+        # Try to find the item
+        j = self.find(self.__key(item))  
+
+        # If found,
+        if j < self.__item_count and self.__list[j] == item:  
+
+            # One fewer at end
+            self.__item_count -= 1  
+
+            # Move bigger items left
+            for k in range(j, self.__item_count):  
                 self.__list[k] = self.__list[k + 1]
-            return True  # Return success flag
 
-        return False  # Made it here; item not found
+            # Return success flag
+            return True  
+        
+        # Made it here; item not found
+        return False  
 
     def __increase_size(self):
         """Increase size of Array"""
