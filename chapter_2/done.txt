@@ -1,1 +1,12 @@
-Your submission was successful! Your confirmation number is 42d590adbc41455abaa623e58b2cc215
+
+You can save or print this confirmation for your records. You can also view your receipts on your My Grades page.
+
+Submission details:
+Confirmation number: 42d590adbc41455abaa623e58b2cc215
+Course: Introduction to Data Structures
+Course ID: SP2425CPS362.K1
+Title: Week 1 Programming Assignment
+Submission date: Jan 24, 2025 5:01 PM
+Size of written submission: 0 bytes
+Size and name of files received: durham_david_chapter_2_project_2_7.zip (4.7 kb)
+Unique Item ID (for administrator use only): _616778_1
