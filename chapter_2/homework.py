@@ -1,6 +1,6 @@
 # David Durham
 # Week 1
-# Project 2.7
+# Projects 2.1, 2.2, 2.4 and 2.7
 
 from classes import Array, OrderedRecordArray
 from random import choice, randint
@@ -43,6 +43,10 @@ def project_2_1():
     print(f"The highest numeric value in array_2 is: {_array_2.get_max_num()}")
 
 
+
+# 2.2 Add a method that returns the value 
+# of the highest number in the array, or None if the
+# array has no numbers, but also removes that item. 
 def project_2_2():
     _array = Array(100)
     _array.insert(77)
@@ -62,6 +66,8 @@ def project_2_2():
     print(f"Array size: {len(_array)}. Highest numeric value: {_array.get_max_num()}")
 
 
+# 2.4 Add a method that remove any duplicate values
+# from the array
 def project_2_4():
     _array = Array(100)
     _array.insert(77)
@@ -81,13 +87,15 @@ def project_2_4():
 
     print("Array before remove_dupes()")
     print(len(_array))
-    # array.traverse()
+    _array.traverse()
     _array.remove_dupes()
     print("Array after remove_dupes()")
     print(len(_array))
-    # array.traverse()
+    _array.traverse()
 
 
+# Modified the OrderedRecordArray to resize itself if
+# an insert is attempted. 
 def project_2_7():
     # Create array and set array size to 5
     _array = OrderedRecordArray(5, second, resizable=True)
@@ -100,14 +108,14 @@ def project_2_7():
 
 
     print(f"Array's size: {_array.get_size()}")
-    print("Array containing", len(_array), "items:\n", _array)
+    print("Array contains", len(_array), "items:\n", _array)
     _array.insert(("new", 8))
     print("Array after insert has", len(_array), "items:\n", _array)
     print(f"Array's size: {_array.get_size()}")
 
 
 if __name__ == "__main__":
-    project_2_1()
+    # project_2_1()
     # project_2_2()
     # project_2_4()
-    #project_2_7()
+    project_2_7()

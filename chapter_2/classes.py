@@ -121,7 +121,8 @@ class Array(object):
         """
         _tmp_list = []
         for item in self.__list:
-            if isinstance(item, (int, float)):
+            # Added bool checker since in Python, they a a subclass of int
+            if isinstance(item, (int, float)) and not isinstance(item, bool):
                 _tmp_list.append(item)
 
         if _tmp_list:
@@ -136,7 +137,8 @@ class Array(object):
         _tmp_list = []
         _highest = None
         for item in self.__list:
-            if isinstance(item, (int, float)):
+            # Added bool checker since in Python, they a a subclass of int
+            if isinstance(item, (int, float)) and not isinstance(item, bool):
                 _tmp_list.append(item)
 
         if _tmp_list:
