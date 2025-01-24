@@ -6,7 +6,7 @@ from classes import Array, OrderedRecordArray
 from random import choice, randint
 from string import ascii_letters
 
-
+# TODO: The book uses for the OrderRecordArray class, but is it needed? (investigate)
 def second(x: list):
     return x[1]
 
@@ -15,19 +15,32 @@ def test_function():
     return "nothing"
 
 
+# 2.1 Add a method that returns the value 
+# of the highest number in the array, or None if the
+# array has no numbers.
 def project_2_1():
-    _array = Array(100)
-    _array.insert(77)
-    _array.insert(99)
-    _array.insert(test_function)
-    _array.insert(100)
-    _array.insert(-49)
-    _array.insert("alpha")
-    _array.insert("beta")
-    _array.insert("charlie")
-    _array.insert("delta")
+    _array_1 = Array(100)
+    _array_1.insert(77)
+    _array_1.insert(99)
+    _array_1.insert(test_function)
+    _array_1.insert(100)
+    _array_1.insert(-49)
+    _array_1.insert("alpha")
+    _array_1.insert("beta")
+    _array_1.insert("charlie")
+    _array_1.insert("delta")
+    print(f"The highest numeric value in array_1 is: {_array_1.get_max_num()}")
 
-    print(f"The max numeric value is: {_array.get_max_num()}")
+
+    _array_2 = Array(100)
+    _array_2.insert(test_function)
+    _array_2.insert("alpha")
+    _array_2.insert(bytearray(5))
+    _array_2.insert("beta")
+    _array_2.insert("charlie")
+    _array_2.insert("delta")
+    _array_2.insert(True)
+    print(f"The highest numeric value in array_2 is: {_array_2.get_max_num()}")
 
 
 def project_2_2():
@@ -94,7 +107,7 @@ def project_2_7():
 
 
 if __name__ == "__main__":
-    # project_2_1()
+    project_2_1()
     # project_2_2()
     # project_2_4()
-    project_2_7()
+    #project_2_7()

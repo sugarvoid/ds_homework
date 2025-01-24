@@ -1,6 +1,7 @@
 from typing import Any, Callable, Optional
 
 
+# TODO: The book uses, this, but is it needed? (investigate)
 def identity(x):
     return x
 
