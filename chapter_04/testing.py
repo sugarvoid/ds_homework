@@ -1,53 +1,51 @@
 import tkinter as tk
+from tkinter import messagebox 
+from classes import Stack
 
-class Stack:
-    def __init__(self, max_size):
-        self.stack = []
-        self.max_size = max_size
 
-    def push(self, item):
-        if len(self.stack) < self.max_size:
-            self.stack.append(item)
-
-    def pop(self):
-        if not self.isEmpty():
-            return self.stack.pop()
-        return None
-
-    def isEmpty(self):
-        return len(self.stack) == 0
-
-    def __str__(self):
-        return str(self.stack)
-
-# Create the main window
 root = tk.Tk()
-root.title("Stack Display")
+root.title("Homework Thing")
 
-# Create a stack and push some items
-stack = Stack(5)
-for word in ['May', 'the', 'force', 'be', 'with', 'you']:
-    stack.push(word)
+lbl_instruction = tk.Label(root, text="Enter Word", font=("Arial", 14))
+lbl_instruction.pack(pady=10)
 
-# Create a label to display the stack
-stack_label = tk.Label(root, text="Stack contents: " + str(stack), font=("Arial", 14))
-stack_label.pack(pady=20)
+lbl_feedback = tk.Label(root, text="", font=("Arial", 14))
+lbl_feedback.pack(pady=10)
 
-# Function to update the label after a pop operation
-def pop_from_stack():
-    if not stack.isEmpty():
-        stack.pop()
-        stack_label.config(text="Stack contents: " + str(stack))  # Update the label
 
-# Function to update the label after a pop operation
-def push_to_stack():
-    if not stack.isEmpty():
-        stack.pop()
-        stack_label.config(text="Stack contents: " + str(stack))  # Update the label
+def check_input():
+    stack = Stack(100) 
+    # Get the text from the txt_input box
+    _item = txt_input.get()  
+    
+    # Make sure something was entered
+    if _item:  
+        # Loop over letters in word
+        for letter in _item: 
+            stack.push(letter)
+            txt_input.delete(0, tk.END)  
+    
+    _reverse = stack.get_reverse()
 
-# Button to pop an item from the stack
-pop_button = tk.Button(root, text="Pop item", command=pop_from_stack)
-pop_button.pack()
+    print(stack.get_stack_str() == stack.get_reverse())
+    
 
-# Start the Tkinter event loop
+    print(f"The reverse is: {stack.get_reverse()}")
+    update_label_text( lbl_feedback,f"The reverse is: {stack.get_reverse()}")
+
+def update_label_text(label: tk.Entry,new_str: str) -> None:
+    label.config(text=new_str) 
+
+
+txt_input = tk.Entry(root, font=("Arial", 16))
+txt_input.pack(pady=10)
+
+btn_check = tk.Button(root, text="Check", command=check_input)
+btn_check.pack()
+
 root.mainloop()
+
+
+
+
+

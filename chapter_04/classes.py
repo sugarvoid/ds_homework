@@ -20,6 +20,7 @@ class Stack(object):
     # Insert item at top of stack
     def push(self, item: Any) -> None:
         if self.isFull():
+            return 0
             raise OverflowError(
                 f"Can not push [{str(item)}] into a Stack that is full."
             )
@@ -27,11 +28,15 @@ class Stack(object):
             # Advance the pointer
             self.__top += 1
             # Store item
+            if isinstance(item, str):
+                item = item.strip()
+
             self.__stack[self.__top] = item
 
     # Remove top item from stack
     def pop(self) -> Any | None:
         if self.isEmpty():
+            return 0
             raise IndexError("Cannot pop from an empty stack.")
         else:
             # Top item
@@ -79,3 +84,27 @@ class Stack(object):
         # Close with right bracket
         ans += "]"
         return ans
+
+    def get_stack_str(self):
+        #TODO: Rename
+        _str = ""
+        for item in self.__stack:
+            if item is not None:
+            #print(item)
+        #for i in self.__stack:
+                _str += item
+        # while not stack.isEmpty():
+        #     _reverse += self.pop()
+        return _str
+
+
+    def get_reverse(self) -> Any:
+        _reverse = ""
+        for item in reversed(self.__stack):
+            if item is not None:
+            #print(item)
+        #for i in self.__stack:
+                _reverse += item
+        # while not stack.isEmpty():
+        #     _reverse += self.pop()
+        return _reverse
