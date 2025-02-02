@@ -1,15 +1,23 @@
 import tkinter as tk
+import tkinter.font as tkFont
 from tkinter import messagebox 
 from classes import Stack
 
 
-root = tk.Tk()
-root.title("Homework Thing")
 
-lbl_instruction = tk.Label(root, text="Enter Word", font=("Arial", 14))
+#determines whether an input string is a palindrome or not, ignoring whitespace, digits, punctuation, and the case of letters
+
+
+root = tk.Tk()
+root.title("palindrome Checker")
+
+normal_font = tkFont.Font(family="Helvetica", size=14, weight=tkFont.NORMAL)
+
+
+lbl_instruction = tk.Label(root, text="Enter Word", font=normal_font)
 lbl_instruction.pack(pady=10)
 
-lbl_feedback = tk.Label(root, text="", font=("Arial", 14))
+lbl_feedback = tk.Label(root, text="", font=normal_font)
 lbl_feedback.pack(pady=10)
 
 
@@ -21,12 +29,13 @@ def check_input():
     # Make sure something was entered
     if _item:  
         # Loop over letters in word
-        for letter in _item: 
-            stack.push(letter)
-            txt_input.delete(0, tk.END)  
+        for char in _item:
+            # Make sure char is a letter a-z
+            if char.isalpha(): 
+                # Remove whitespace and normalize the case of letters
+                stack.push(char.strip().lower())
+                txt_input.delete(0, tk.END)  
     
-    _reverse = stack.get_reverse()
-
     print(stack.get_stack_str() == stack.get_reverse())
     
 

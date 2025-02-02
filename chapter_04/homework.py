@@ -5,6 +5,21 @@
 
 from classes import Stack
 
+
+# Pushing and popping within its index range
+def test_1_pass() -> None:
+    pass
+
+# Popping from an empty stack
+def test_2_fail() -> None:
+    pass
+
+# Pushing to a full stack
+def test_3_fail() -> None:
+    pass
+
+
+
 stack = Stack(12)
 #stack.pop()
 
@@ -22,3 +37,8 @@ while not stack.isEmpty():
     print(stack.pop(), end=' ')
 print()
 
+
+if __name__ == "__main__":
+    test_1_pass()
+    # test_2_fail()
+    # test_3_fail()

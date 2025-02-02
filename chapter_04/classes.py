@@ -86,7 +86,7 @@ class Stack(object):
         return ans
 
     def get_stack_str(self):
-        #TODO: Rename
+        #TODO: Rename this function to something more fitting. 
         _str = ""
         for item in self.__stack:
             if item is not None:
