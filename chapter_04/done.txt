@@ -1,1 +1,9 @@
-90d78f2198a2431aae7cb19fef2f3f9e
+Submission details:
+Confirmation number: 90d78f2198a2431aae7cb19fef2f3f9e
+Course: Introduction to Data Structures
+Course ID: SP2425CPS362.K1
+Title: Week 2 Programming Assignment
+Submission date: Feb 2, 2025 10:47 AM
+Size of written submission: 0 bytes
+Size and name of files received: durham_david.zip (3 kb)
+Unique Item ID (for administrator use only): _618884_1
