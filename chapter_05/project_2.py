@@ -11,7 +11,7 @@ p_ordered_list.insert(1)
 p_ordered_list.insert(54) 
 p_ordered_list.insert(3) 
 
-print(p_ordered_list.get_first())
+print(len(p_ordered_list))
 
 #print(p_ordered_list.remove()) 
 #print(p_ordered_list.remove()) 

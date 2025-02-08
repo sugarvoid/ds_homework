@@ -1,7 +1,7 @@
 
 # Chapter 5 Assignment
 
-This week, I choose to do projects 5.1
+This week, I choose to do projects 5.1 and 5.2
 
 
 ## LinkedList Class class
