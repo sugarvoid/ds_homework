@@ -7,8 +7,9 @@ This week, I choose to do projects 5.1 and 5.2
 ## LinkedList Class class
 
 ### Added 
-- `__iter__()` method from the book
-- PriorityOrderedList class **(Project 5.2)**. As of now, it can only handle integers 
+- `__iter__()` method from the book.
+- PriorityOrderedList class **(Project 5.2)**. As of now, it can only handle integers.
+- `get_len_string()` method for a cleaner/reuseable way to print how many links the LinkedList has. 
 
 ### Changed 
 - Method names to use ~~the best case~~ snake_case.

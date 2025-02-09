@@ -16,7 +16,7 @@ class Link(object):
     def set_data(self, data) -> None:
         self.__data = data
 
-    def get_next(self) -> "Link" | None:
+    def get_next(self) -> Any | None:
         # Return the next link
         return self.__next
 
@@ -40,11 +40,11 @@ class Link(object):
 
 class LinkedList(object):
     # A linked list of data elements
-    def __init__(self):
+    def __init__(self) -> None:
         # Constructor
         self.__first = None
 
-    def get_first(self) -> Link | None:
+    def get_first(self) -> Any | None:
         # Return the first link
         return self.__first
 
@@ -55,6 +55,9 @@ class LinkedList(object):
             self.__first = link
         else:
             raise Exception("First link must be Link or None")
+
+    def get_len_string(self) -> str:
+        return f"LinkedList has {len(self)} link{'s' if len(self) != 1 else ''}"
 
     def __iter__(self) -> Generator[Any, None, None]:
         # Define an iterator for the list
@@ -113,6 +116,20 @@ class LinkedList(object):
         _link = Link(data, self.get_first())
         # Update list to include the new Link
         self.set_first(_link)
+
+    def remove(self) -> Any:
+        # Remove the item with the smallest number
+        if self.is_empty():
+            raise Exception("Queue underflow")
+
+        # Remove the first link (smallest number)
+        item = self.__first.get_data()
+
+        # Move the first pointer to the next link
+        self.__first = self.__first.get_next()
+
+        # Return the removed item
+        return item
 
     def find(self, goal, key=lambda x: x) -> Any | None:
         # Find the first Link whose key matches the goal
